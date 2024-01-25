@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글목록</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <%- include('nav.ejs') %>
+  <h1>게시판</h1>
+  <% for (let i=0; i<post.length; i++) { %>
+    <div>
+      <a href="/list/<%= post[i]._id %>"><%= post[i].title %></a>
+      <a href="/edit/<%= post[i]._id %>">✎</a>
+      <a class="delete">🗑</a>
+    </div>
+    <div id="content">
+      <%= post[i].content %>
+    </div>
+  <% } %>
+
+  <script>
+    document.querySelectorAll('.delete')[0].addEventListener('click', () => {
+      fetch('/delete?id=' + '<%= post[0]._id %>', {
+        method : "DELETE",
+        headers : {
+          'Accept' : 'application/json'
+        }
+      })
+    }) // 쿼리스트링으로 요청 보내보기
+  </script>
+
+</body>
+</html>

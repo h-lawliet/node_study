@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>글 수정하기</title>
+  <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+  <%- include('nav.ejs') %>
+  <form class="form-box" action="/edit" method="POST">
+    <input name="id" value="<%= edit._id %>" style="display: none;">
+    <div>
+      제목 : <input name="title" type="text" value="<%= edit.title %>">
+    </div>
+    <div>
+      내용 : <textarea name="content" rows="5" cols="50"><%= edit.content %></textarea>
+    </div>
+    <button type="submit">수정</button>
+  </form>
+</body>
+</html>
